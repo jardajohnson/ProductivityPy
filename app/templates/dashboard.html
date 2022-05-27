@@ -22,7 +22,7 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<form action="/user/new">
+						<form action="/user/new" method="post">
 							<div class="mb-3">
 								<label for="name" class="form-label">Name:</label>
 								<input type="text" class="form-control" id="name" name="name">
@@ -49,8 +49,8 @@
 		</div>
 		</div>
 
-
 		<div class="d-flex">
+			<!-- side nav -->
 			<div class="d-flex flex-column flex-shrink-0 bg-light vh-100" style="width: 100px;">
 				<ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
 					<li class="nav-item"> <a href="#" class="nav-link active py-3 border-bottom"> <i
@@ -62,18 +62,36 @@
 				<div class="dropdown border-top"> <a href="#"
 						class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
 						id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false"> <img
-							src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
+							src="https://github.com/mdo.png" alt="mdo" width="24" height="32" class="rounded-circle">
 					</a>
 					<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
 						<li><button type="button" class="btn btn-primary" data-bs-toggle="modal"
 								data-bs-target="#staticBackdrop">
-								Launch static backdrop modal
+								Sign Up
 							</button></li>
 						<li><a class="dropdown-item" href="#">Sign out</a></li>
 					</ul>
 				</div>
 			</div>
+			<!-- Content -->
 			<div class="container pt-3">
+				<!-- Flash Errors -->
+				{% with messages = get_flashed_messages(category_filter=['register']) %}
+				<!-- declare a variable called messages -->
+				{% if messages %}
+				<!-- check if there are any messages -->
+				<div class="row">
+					<div class="col">
+						<div>
+							{% for message in messages %}
+							<!-- loop through the messages -->
+							<p>{{message}}</p> <!-- display each message in a paragraph tag -->
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				{% endif %}
+				{% endwith %}
 				<div class="row">
 					<!-- New Note section -->
 					<div class="col">
@@ -108,6 +126,8 @@
 						</div>
 					</div>
 				</div>
+
+
 			</div>
 		</div>
 

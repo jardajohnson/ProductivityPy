@@ -12,6 +12,44 @@
 	</head>
 
 	<body>
+		<!-- Sign up Modal -->
+		<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="staticBackdropLabel">Sign Up</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form action="/user/new">
+							<div class="mb-3">
+								<label for="name" class="form-label">Name:</label>
+								<input type="text" class="form-control" id="name" name="name">
+							</div>
+							<div class="mb-3">
+								<label for="email" class="form-label">Email:</label>
+								<input type="email" class="form-control" id="email" name="email">
+							</div>
+							<div class="mb-3">
+								<label for="password" class="form-label">Password</label>
+								<input type="password" class="form-control" id="password" name="password">
+							</div>
+							<div class="mb-3">
+								<label for="confirmPassword" class="form-label">Confirm Password:</label>
+								<input type="password" class="form-control" id="confirmPassword"
+									name="confirm_password">
+							</div>
+							<button type="submit" class="btn btn-primary">Register</button>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		</div>
+
+
 		<div class="d-flex">
 			<div class="d-flex flex-column flex-shrink-0 bg-light vh-100" style="width: 100px;">
 				<ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
@@ -27,7 +65,10 @@
 							src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
 					</a>
 					<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-
+						<li><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+								data-bs-target="#staticBackdrop">
+								Launch static backdrop modal
+							</button></li>
 						<li><a class="dropdown-item" href="#">Sign out</a></li>
 					</ul>
 				</div>

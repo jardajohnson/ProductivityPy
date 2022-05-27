@@ -46,3 +46,12 @@ class User:
     def create_user(cls, data: dict) -> int:
         result = db.users.insert_one(data)
         return result.inserted_id
+    
+# ! READ
+
+    @classmethod
+    def get_user(cls, data: dict) -> object:
+
+        result = db.users.find_one(data)
+        print('get_one data:', result)
+        return cls(result)

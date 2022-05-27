@@ -12,6 +12,7 @@ class User:
         self.email = data['email']
         self.password = data['password']
         self.created_at = date.datetime.now()
+        self.notes = []
 
 
 # * Static methods

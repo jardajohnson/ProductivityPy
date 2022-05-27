@@ -37,3 +37,11 @@ class User:
             flash("Passwords must match.", "register")
             is_valid = False
         return is_valid
+
+# * Class methods
+# ! CREATE
+
+    @classmethod
+    def create_user(cls, data: dict) -> int:
+        result = db.users.insert_one(data)
+        return result.inserted_id

@@ -37,8 +37,9 @@
 					</ul>
 				</div>
 			</div>
-			<div class="container">
+			<div class="container pt-3">
 				<div class="row">
+					<!-- New Note section -->
 					<div class="col">
 						<form action="/note/new">
 							<div class="card">
@@ -54,6 +55,21 @@
 								</div>
 							</div>
 						</form>
+					</div>
+					<!-- User Notes section -->
+					<div class="col">
+						<div class="card">
+							<div class="card-header d-flex justify-content-between text-center">
+								<h5>NOTE TITLE</h5>
+								<h6>NOTE DATE</h6>
+							</div>
+							<div class="card-body">
+								<div class="border border-primary p-4">
+									<p class="card-text">NOTE content.</p>
+								</div>
+								<a href="/note/delete/" class="btn btn-danger mt-3">Delete</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

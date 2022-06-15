@@ -7,6 +7,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
 			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/animations.css')}}">
 
 		<title>Productivity.Py✅</title>
 	</head>
@@ -18,63 +22,100 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="staticBackdropLabel">Sign Up</h5>
+						<h5 class="modal-title text-primary" id="staticBackdropLabel">Productivity.Py</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
-					<div class="modal-body">
-						<form action="/user/new" method="post">
-							<div class="mb-3">
-								<label for="name" class="form-label">Name:</label>
-								<input type="text" class="form-control" id="name" name="name">
-							</div>
-							<div class="mb-3">
-								<label for="email" class="form-label">Email:</label>
-								<input type="email" class="form-control" id="email" name="email">
-							</div>
-							<div class="mb-3">
-								<label for="password" class="form-label">Password</label>
-								<input type="password" class="form-control" id="password" name="password">
-							</div>
-							<div class="mb-3">
-								<label for="confirmPassword" class="form-label">Confirm Password:</label>
-								<input type="password" class="form-control" id="confirmPassword"
-									name="confirm_password">
-							</div>
-							<button type="submit" class="btn btn-primary">Register</button>
-						</form>
-					</div>
+					<div class="modal-body d-flex justify-content-between">
+						<div>
+							<h6 class="text-success">Sign up</h6>
+							<form action="/user/new" method="post">
+								<div class="mb-3">
+									<label for="name" class="form-label">Name:</label>
+									<input type="text" class="form-control" id="name" name="name">
+								</div>
+								<div class="mb-3">
+									<label for="email" class="form-label">Email:</label>
+									<input type="email" class="form-control" id="email" name="email">
+								</div>
+								<div class="mb-3">
+									<label for="password" class="form-label">Password</label>
+									<input type="password" class="form-control" id="password" name="password">
+								</div>
+								<div class="mb-3">
+									<label for="confirmPassword" class="form-label">Confirm Password:</label>
+									<input type="password" class="form-control" id="confirmPassword"
+										name="confirm_password">
+								</div>
+								<button type="submit" class="btn btn-primary">Register</button>
+							</form>
+						</div>
 
+						<div>
+							<h6>Login</h6>
+							<form action="/login" method="post">
+								<div class="mb-3">
+									<label for="email" class="form-label">Email:</label>
+									<input type="email" class="form-control" id="email" name="email">
+								</div>
+								<div class="mb-3">
+									<label for="password" class="form-label">Password</label>
+									<input type="password" class="form-control" id="password" name="password">
+								</div>
+								<button type="submit" class="btn btn-primary">Login</button>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		</div>
 
-		<div class="d-flex">
+		<div class="d-flex justify-content-start">
 			<!-- side nav -->
-			<div class="d-flex flex-column flex-shrink-0 bg-light vh-100" style="width: 100px;">
+			<div class="d-flex flex-column flex-shrink-0 bg-dark vh-100 blur-in-expand" style="width: 100px;">
 				<ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+					{%if 'current_user' in session:%}
 					<li class="nav-item"> <a href="#" class="nav-link active py-3 border-bottom"> <i
 								class="fa fa-home"></i>
 							<small>Notes</small> </a> </li>
 					<li> <a href="#" class="nav-link py-3 border-bottom"> <i class="fa fa-first-order"></i>
 							<small>Pomodoro</small> </a> </li>
+					{% endif %}
 				</ul>
 				<div class="dropdown border-top"> <a href="#"
 						class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
 						id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false"> <img
-							src="https://github.com/mdo.png" alt="mdo" width="24" height="32" class="rounded-circle">
+							src="{{url_for('static', filename='images/user.png')}}" alt="mdo" class="rounded-circle">
 					</a>
 					<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-						<li><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+						<li><a type="button" class="dropdown-item" data-bs-toggle="modal"
 								data-bs-target="#staticBackdrop">
-								Sign Up
-							</button></li>
-						<li><a class="dropdown-item" href="#">Sign out</a></li>
+								Login | Sign Up
+							</a></li>
+						{% if 'current_user' in session:%}
+						<li><a class="dropdown-item" href="/logout">Sign out</a></li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>
 			<!-- Content -->
 			<div class="container pt-3">
+				<div class="row">
+					<div class="px-4 py-5 my-5 text-center">
+						<h1 class="display-1 fw-bold text-primary scale-up-top ">Productivity.Py 🐍</h1>
+						<div class="col-lg-6 mx-auto">
+							<!-- <p class="lead mb-4 fw-bold">Quickly design and customize responsive mobile-first sites
+								with
+								Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass
+								variables and mixins, responsive grid system, extensive prebuilt components, and
+								powerful JavaScript plugins.</p> -->
+							<blockquote>
+								&ldquo;{{quote.quote}}&rdquo; &mdash;
+								<footer>{{quote.author}}</footer>
+							</blockquote>
+
+						</div>
+					</div>
+				</div>
 				<!-- Flash Errors -->
 				{% with messages = get_flashed_messages(category_filter=['register']) %}
 				<!-- declare a variable called messages -->
@@ -93,38 +134,46 @@
 				{% endif %}
 				{% endwith %}
 				<div class="row">
+					{% if 'current_user' in session: %}
 					<!-- New Note section -->
 					<div class="col">
-						<form action="/note/new">
+						<form action="/note/new" method="post">
 							<div class="card">
 								<div class="card-header">
-									New Note
+									<input type="text" class="form-control" placeholder="New Note Title" name="title">
 								</div>
 								<div class="card-body">
 									<div class="form-floating">
 										<textarea class="form-control" placeholder="Leave a note here"
 											name="content"></textarea>
 									</div>
-									<button type="submit" class="btn btn-success mt-3">Add</button>
+									<button type="submit" class="btn btn-success mt-3">Add Note</button>
 								</div>
 							</div>
 						</form>
 					</div>
 					<!-- User Notes section -->
+					{% if user.notes: %}
 					<div class="col">
+						{% for note in user.notes: %}
 						<div class="card">
 							<div class="card-header d-flex justify-content-between text-center">
-								<h5>NOTE TITLE</h5>
-								<h6>NOTE DATE</h6>
+								<h5>{{note.title}}</h5>
+								<h6>{{note.created_at}}</h6>
 							</div>
 							<div class="card-body">
 								<div class="border border-primary p-4">
-									<p class="card-text">NOTE content.</p>
+									<p class="card-text">{{note.content}}</p>
 								</div>
 								<a href="/note/delete/" class="btn btn-danger mt-3">Delete</a>
 							</div>
 						</div>
+						{% endfor %}
 					</div>
+					{% endif %}
+					{% else: %}
+					<h1 class="scale-up-center text-center text-danger">Please Sign in</h1>
+					{% endif %}
 				</div>
 
 

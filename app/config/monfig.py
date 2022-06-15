@@ -1,6 +1,6 @@
 import pymongo
 
-DATABASE = 'productivity_py'
+DATABASE = 'productivitypy'
 
 # ! Connects to MongoDB Client and assigns connection to variable
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")

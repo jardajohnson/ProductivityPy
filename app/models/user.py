@@ -1,21 +1,23 @@
 from flask import flash
 from app.config.monfig import db
-from datetime import datetime as date
+import datetime
 import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 
 class User:
+    notes = []
+
     def __init__(self, data: dict) -> None:
         self.id = data['_id']
         self.name = data['name']
         self.email = data['email']
         self.password = data['password']
-        self.created_at = date.datetime.now()
-        self.notes = []
+        self.created_at = datetime.datetime.now()
 
 
 # * Static methods
+
 
     @staticmethod
     def validate_user(user) -> bool:
@@ -46,12 +48,14 @@ class User:
     def create_user(cls, data: dict) -> int:
         result = db.users.insert_one(data)
         return result.inserted_id
-    
+
 # ! READ
 
     @classmethod
     def get_user(cls, data: dict) -> object:
 
         result = db.users.find_one(data)
-        print('get_one data:', result)
-        return cls(result)
+
+        if result:
+            return cls(result)
+        return None
